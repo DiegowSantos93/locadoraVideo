@@ -1,9 +1,23 @@
-function check_role(roles = []) {
-    return (req, res, next) => {
-      if (!roles.includes(req.user.tipo)) {
-        res.sendStatus(403);
-      } else next();
-    };
+import jwtService from "../services/jwt-services.js";
+
+function check_token(req, res, next) {
+
+  const auth_header = req.headers["authorization"];
+
+  const token = auth_header && auth_header.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json("Acesso negado (usuário não identificado)");
   }
-  
-  export default check_role;
+
+  try {
+    req.user = jwtService.verifyAccessToken(token);
+  } catch (error) {
+    console.log(error)
+    res.status(401).json("Token inválido");
+  }
+
+  next();
+};
+
+export default check_token;

@@ -25,7 +25,6 @@ const userSchema = new Schema({
     permission_Type: {
         type: String,
         enum: ["ADM", "USR"],
-        required: true,
         default: "USR",
     },
     phones: {

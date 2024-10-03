@@ -55,7 +55,7 @@ const signup = async (req, res) => {
         });
   
         const token = jwtService.generateAccessToken({
-        tipo: user.tipo,
+        permission_Type: user.permission_Type,
         email: user.email,
         _id: user._id,
         });
@@ -78,7 +78,7 @@ const login = async (req, res) => {
   
         if (user && (await user.senhaCorreta(req.body.password))) {
             const token = jwtService.generateAccessToken({
-            tipo: user.tipo,
+            permission_Type: user.permission_Type,
             email: user.email,
             _id: user._id,
             });
