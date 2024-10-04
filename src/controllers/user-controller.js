@@ -51,7 +51,8 @@ const signup = async (req, res) => {
         const user = await User.create({
         email: req.body.email,
         password: req.body.password,
-        permission_Type: req.body.permission_Type
+        permission_Type: req.body.permission_Type,
+        birthday_Date: req.body.birthday_Date
         });
   
         const token = jwtService.generateAccessToken({
