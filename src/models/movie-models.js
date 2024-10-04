@@ -5,11 +5,11 @@ const Schema = db.Schema;
 const movieSchema = new Schema({
     name: {
         type: String,
-        required: false,
+        required: true,
     },
     release_Date: {
         type: Date,
-        required: false,
+        required: true,
     },
     director: {
         type: String,
